@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Add/Edit User</h1>
+<form [formGroup]="userForm">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName">
+      <mat-error *ngIf="userForm.get('firstName')?.hasError('required') && userForm.get('firstName')?.touched">
+        First Name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName">
+      <mat-error *ngIf="userForm.get('lastName')?.hasError('required') && userForm.get('lastName')?.touched">
+        Last Name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+      <mat-error *ngIf="userForm.get('email')?.hasError('required') && userForm.get('email')?.touched">
+        Email is required.
+      </mat-error>
+      <mat-error *ngIf="userForm.get('email')?.hasError('invalidEmail')">
+        Please enter a valid email address.
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button class="cancel-button" (click)="onNoClick()">Cancel</button>
+    <button mat-button [disabled]="userForm.invalid" class="green-button" (click)="onSubmit()">Save</button>
+  </div>
+</form>
